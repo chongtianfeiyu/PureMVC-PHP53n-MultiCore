@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:42:05 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../../../overview-summary.html">
+
+<title>org\puremvc\php53n\multicore\utilities\pipes\messages\FilterControlMessage.php (PureMVC PHP)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../../source\org\puremvc\php53n\multicore\utilities\pipes\messages\filtercontrolmessage.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>org\puremvc\php53n\multicore\utilities\pipes\messages\FilterControlMessage.php</h1>
+<div class="comment" id="overview_description"><p>PureMVC PHP MultiCore Pipes Utility 
+
+A PHP port of Cliff Hall
+PureMVC AS3/MultiCore Pipes Utility
+
+Created on August 27, 2010</p></div>
+
+<hr>
+
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line3"></a> * PureMVC PHP MultiCore Pipes Utility 
+<a name="line4"></a> * 
+<a name="line5"></a> * A PHP port of Cliff Hall
+<a name="line6"></a> * PureMVC AS3/MultiCore Pipes Utility
+<a name="line7"></a> * 
+<a name="line8"></a> * Created on August 27, 2010
+<a name="line9"></a> * 
+<a name="line10"></a> * @version 0.1
+<a name="line11"></a> * @author Michel Chouinard &lt;michel.chouinard@gmail.com&gt;
+<a name="line12"></a> * @copyright PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
+<a name="line13"></a> * @license http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported License
+<a name="line14"></a> * 
+<a name="line15"></a> */</span>
+<a name="line16"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line17"></a> * 
+<a name="line18"></a> */</span>
+<a name="line19"></a><span style="color: #000000; font-weight: bold;">namespace</span> org\puremvc\php53n\multicore\utilities\pipes\messages<span style="color: #339933;">;</span>
+<a name="line20"></a>&nbsp;
+<a name="line21"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/utilities/pipes/messages/Message.php'</span><span style="color: #339933;">;</span>
+<a name="line22"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line23"></a> * Filter Control Message.
+<a name="line24"></a> * &lt;P&gt;
+<a name="line25"></a> * A special message type for controlling the behavior of a Filter.&lt;/P&gt;
+<a name="line26"></a> * &lt;P&gt; 
+<a name="line27"></a> * The &lt;code&gt;FilterControlMessage.SET_PARAMS&lt;/code&gt; message type tells the Filter
+<a name="line28"></a> * to retrieve the filter parameters object.&lt;/P&gt; 
+<a name="line29"></a> * 
+<a name="line30"></a> * &lt;P&gt; 
+<a name="line31"></a> * The &lt;code&gt;FilterControlMessage.SET_FILTER&lt;/code&gt; message type tells the Filter
+<a name="line32"></a> * to retrieve the filter function.&lt;/P&gt;
+<a name="line33"></a> * 
+<a name="line34"></a> * &lt;P&gt; 
+<a name="line35"></a> * The &lt;code&gt;FilterControlMessage.BYPASS&lt;/code&gt; message type tells the Filter
+<a name="line36"></a> * that it should go into Bypass mode operation, passing all normal
+<a name="line37"></a> * messages through unfiltered.&lt;/P&gt;
+<a name="line38"></a> * 
+<a name="line39"></a> * &lt;P&gt;
+<a name="line40"></a> * The &lt;code&gt;FilterControlMessage.FILTER&lt;/code&gt; message type tells the Filter
+<a name="line41"></a> * that it should go into Filtering mode operation, filtering all
+<a name="line42"></a> * normal normal messages before writing out. This is the default
+<a name="line43"></a> * mode of operation and so this message type need only be sent to
+<a name="line44"></a> * cancel a previous  &lt;code&gt;FilterControlMessage.BYPASS&lt;/code&gt; message.&lt;/P&gt;
+<a name="line45"></a> * 
+<a name="line46"></a> * &lt;P&gt;
+<a name="line47"></a> * The Filter only acts on a control message if it is targeted 
+<a name="line48"></a> * to this named filter instance. Otherwise it writes the message
+<a name="line49"></a> * through to its output unchanged.&lt;/P&gt;
+<a name="line50"></a> * 
+<a name="line51"></a> */</span> 
+<a name="line52"></a><span style="color: #000000; font-weight: bold;">class</span> FilterControlMessage <span style="color: #000000; font-weight: bold;">extends</span> Message
+<a name="line53"></a><span style="color: #009900;">&#123;</span>
+<a name="line54"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line55"></a>	 * @var object
+<a name="line56"></a>	 */</span>
+<a name="line57"></a>	<span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$params</span><span style="color: #339933;">;</span>
+<a name="line58"></a>&nbsp;
+<a name="line59"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line60"></a>	 * @var function
+<a name="line61"></a>	 */</span>
+<a name="line62"></a>	<span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$filter</span><span style="color: #339933;">;</span>
+<a name="line63"></a>&nbsp;
+<a name="line64"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line65"></a>	 * @var string
+<a name="line66"></a>	 */</span>
+<a name="line67"></a>	<span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$name</span><span style="color: #339933;">;</span>
+<a name="line68"></a>&nbsp;
+<a name="line69"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line70"></a>	 * Message type base URI
+<a name="line71"></a>	 */</span>
+<a name="line72"></a>	<span style="color: #000000; font-weight: bold;">const</span> BASE <span style="color: #339933;">=</span> <span style="color: #0000ff;">'http://puremvc.org/namespaces/pipes/messages/filter-control/'</span><span style="color: #339933;">;</span>
+<a name="line73"></a>&nbsp;
+<a name="line74"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line75"></a>	 * Set filter parameters.
+<a name="line76"></a>	 */</span> 
+<a name="line77"></a>	<span style="color: #000000; font-weight: bold;">const</span> SET_PARAMS <span style="color: #339933;">=</span> <span style="color: #0000ff;">'http://puremvc.org/namespaces/pipes/messages/setparams'</span><span style="color: #339933;">;</span>
+<a name="line78"></a>&nbsp;
+<a name="line79"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line80"></a>	 * Set filter function.
+<a name="line81"></a>	 */</span> 
+<a name="line82"></a>	<span style="color: #000000; font-weight: bold;">const</span> SET_FILTER <span style="color: #339933;">=</span> <span style="color: #0000ff;">'http://puremvc.org/namespaces/pipes/messages/setfilter'</span><span style="color: #339933;">;</span>
+<a name="line83"></a>&nbsp;
+<a name="line84"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line85"></a>	 * Toggle to filter bypass mode.
+<a name="line86"></a>	 */</span>
+<a name="line87"></a>	<span style="color: #000000; font-weight: bold;">const</span> BYPASS <span style="color: #339933;">=</span> <span style="color: #0000ff;">'http://puremvc.org/namespaces/pipes/messages/bypass'</span><span style="color: #339933;">;</span>
+<a name="line88"></a>&nbsp;
+<a name="line89"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line90"></a>	 * Toggle to filtering mode. (default behavior).
+<a name="line91"></a>	 */</span>
+<a name="line92"></a>	<span style="color: #000000; font-weight: bold;">const</span> FILTER <span style="color: #339933;">=</span> <span style="color: #0000ff;">'http://puremvc.org/namespaces/pipes/messages/filter'</span><span style="color: #339933;">;</span>
+<a name="line93"></a>&nbsp;
+<a name="line94"></a>&nbsp;
+<a name="line95"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line96"></a>	 * Constructor
+<a name="line97"></a>	 * 
+<a name="line98"></a>	 * @param string $type
+<a name="line99"></a>	 * @param string $name
+<a name="line100"></a>	 * @param function $filter
+<a name="line101"></a>	 * @param object $params
+<a name="line102"></a>	 * @return FilterControlMessage
+<a name="line103"></a>	 */</span>
+<a name="line104"></a>	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$type</span><span style="color: #339933;">,</span> <span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$filter</span><span style="color: #339933;">=</span><span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">=</span><span style="color: #009900; font-weight: bold;">null</span> <span style="color: #009900;">&#41;</span>
+<a name="line105"></a>	<span style="color: #009900;">&#123;</span>
+<a name="line106"></a>		parent<span style="color: #339933;">::</span>__construct<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$type</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line107"></a>		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setName</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$name</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line108"></a>		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setFilter</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$filter</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line109"></a>		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setParams</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$params</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line110"></a>	<span style="color: #009900;">&#125;</span>
+<a name="line111"></a>&nbsp;
+<a name="line112"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line113"></a>	 * Set the target filter name.
+<a name="line114"></a>	 * 
+<a name="line115"></a>	 * @param string $name
+<a name="line116"></a>	 * @return void
+<a name="line117"></a>	 */</span>
+<a name="line118"></a>	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setName<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$name</span> <span style="color: #009900;">&#41;</span>
+<a name="line119"></a>	<span style="color: #009900;">&#123;</span>
+<a name="line120"></a>		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$name</span><span style="color: #339933;">;</span>
+<a name="line121"></a>	<span style="color: #009900;">&#125;</span>
+<a name="line122"></a>&nbsp;
+<a name="line123"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line124"></a>	 * Get the target filter name.
+<a name="line125"></a>	 * 
+<a name="line126"></a>	 * @return string
+<a name="line127"></a>	 */</span>
+<a name="line128"></a>	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getName<span style="color: #009900;">&#40;</span> <span style="color: #009900;">&#41;</span>
+<a name="line129"></a>	<span style="color: #009900;">&#123;</span>
+<a name="line130"></a>		<span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">;</span>
+<a name="line131"></a>	<span style="color: #009900;">&#125;</span>
+<a name="line132"></a>&nbsp;
+<a name="line133"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line134"></a>	 * Set the filter function.
+<a name="line135"></a>	 * 
+<a name="line136"></a>	 * @param function $filter
+<a name="line137"></a>	 * @return void
+<a name="line138"></a>	 */</span>
+<a name="line139"></a>	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setFilter<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$filter</span> <span style="color: #009900;">&#41;</span>
+<a name="line140"></a>	<span style="color: #009900;">&#123;</span>
+<a name="line141"></a>		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">filter</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$filter</span><span style="color: #339933;">;</span>
+<a name="line142"></a>	<span style="color: #009900;">&#125;</span>
+<a name="line143"></a>&nbsp;
+<a name="line144"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line145"></a>	 * Get the filter function.
+<a name="line146"></a>	 * 
+<a name="line147"></a>	 * @return function
+<a name="line148"></a>	 */</span>
+<a name="line149"></a>	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getFilter<span style="color: #009900;">&#40;</span> <span style="color: #009900;">&#41;</span>
+<a name="line150"></a>	<span style="color: #009900;">&#123;</span>
+<a name="line151"></a>		<span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">filter</span><span style="color: #339933;">;</span>
+<a name="line152"></a>	<span style="color: #009900;">&#125;</span>
+<a name="line153"></a>&nbsp;
+<a name="line154"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line155"></a>	 * Set the parameters object.
+<a name="line156"></a>	 * 
+<a name="line157"></a>	 * @param object $params
+<a name="line158"></a>	 * @return void
+<a name="line159"></a>	 */</span>
+<a name="line160"></a>	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setParams<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$params</span> <span style="color: #009900;">&#41;</span>
+<a name="line161"></a>	<span style="color: #009900;">&#123;</span>
+<a name="line162"></a>		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$params</span><span style="color: #339933;">;</span>
+<a name="line163"></a>	<span style="color: #009900;">&#125;</span>
+<a name="line164"></a>&nbsp;
+<a name="line165"></a>	<span style="color: #009933; font-style: italic;">/**
+<a name="line166"></a>	 * Get the parameters object.
+<a name="line167"></a>	 * 
+<a name="line168"></a>	 * @return object
+<a name="line169"></a>	 */</span>
+<a name="line170"></a>	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getParams<span style="color: #009900;">&#40;</span> <span style="color: #009900;">&#41;</span>
+<a name="line171"></a>	<span style="color: #009900;">&#123;</span>
+<a name="line172"></a>		<span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #339933;">;</span>
+<a name="line173"></a>	<span style="color: #009900;">&#125;</span>
+<a name="line174"></a>&nbsp;
+<a name="line175"></a><span style="color: #009900;">&#125;</span>
+<a name="line176"></a>&nbsp;</pre>
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../../source\org\puremvc\php53n\multicore\utilities\pipes\messages\filtercontrolmessage.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

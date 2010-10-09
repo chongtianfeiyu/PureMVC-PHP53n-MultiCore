@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:41:51 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../../overview-summary.html">
+
+<title>TeeSplit (PureMVC PHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../org\puremvc\php53n\multicore\utilities\pipes\plumbing\teesplit.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">org\puremvc\php53n\multicore\utilities\pipes\plumbing\TeeSplit</div>
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\teesplit.php.html#line33" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\TeeSplit.php at line 33</a>
+
+<h1>Class TeeSplit</h1>
+
+<pre class="tree"><strong>TeeSplit</strong><br /></pre>
+
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">org\puremvc\php53n\multicore\utilities\pipes\interfaces\IPipeFitting</a> </dd>
+</dl>
+
+<hr>
+
+<p class="signature">public  class <strong>TeeSplit</strong></p>
+
+<div class="comment" id="overview_description"><p>Splitting Pipe Tee.
+<P>
+Writes input messages to multiple output pipe fittings.</P></p></div>
+
+<hr>
+
+<table id="summary_field">
+<tr><th colspan="2">Field Summary</th></tr>
+<tr>
+<td class="type">protected  mixed</td>
+<td class="description"><p class="name"><a href="#outputs">$outputs</a></p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output1, <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output2)</p><p class="description">Constructor.</p></td>
+</tr>
+<tr>
+<td class="type"> bool</td>
+<td class="description"><p class="name"><a href="#connect()">connect</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output)</p><p class="description">Connect the output IPipeFitting.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a></td>
+<td class="description"><p class="name"><a href="#disconnect()">disconnect</a>()</p><p class="description">Disconnect the most recently connected output fitting. </p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a></td>
+<td class="description"><p class="name"><a href="#disconnectFitting()">disconnectFitting</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> target)</p><p class="description">Disconnect a given output fitting. </p></td>
+</tr>
+<tr>
+<td class="type"> bool</td>
+<td class="description"><p class="name"><a href="#write()">write</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> message)</p><p class="description">Write the message to all connected outputs.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_field">Field Detail</h2>
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\teesplit.php.html#line35" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\TeeSplit.php at line 35</a>
+
+<h3 id="outputs">outputs</h3>
+<code class="signature">protected  mixed <strong>$outputs</strong> = array()</code>
+<div class="details">
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\teesplit.php.html#line44" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\TeeSplit.php at line 44</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output1, <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output2)</code>
+<div class="details">
+<p>Constructor.
+<P>
+Create the TeeSplit and connect the up two optional outputs.
+This is the most common configuration, though you can connect
+as many outputs as necessary by calling <code>connect</code>.</P></p></div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\teesplit.php.html#line67" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\TeeSplit.php at line 67</a>
+
+<h3 id="connect()">connect</h3>
+<code class="signature">public  bool <strong>connect</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output)</code>
+<div class="details">
+<p>Connect the output IPipeFitting.
+<P>
+NOTE: You can connect as many outputs as you want
+by calling this method repeatedly.</P></p><dl>
+<dt>Parameters:</dt>
+<dd>output - the IPipeFitting to connect for output.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\teesplit.php.html#line81" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\TeeSplit.php at line 81</a>
+
+<h3 id="disconnect()">disconnect</h3>
+<code class="signature">public  <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> <strong>disconnect</strong>()</code>
+<div class="details">
+<p>Disconnect the most recently connected output fitting. (LIFO)
+<P>
+To disconnect all outputs, you must call this 
+method repeatedly untill it returns null.</P></p></div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\teesplit.php.html#line101" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\TeeSplit.php at line 101</a>
+
+<h3 id="disconnectFitting()">disconnectFitting</h3>
+<code class="signature">public  <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> <strong>disconnectFitting</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> target)</code>
+<div class="details">
+<p>Disconnect a given output fitting. 
+<P>
+If the fitting passed in is connected
+as an output of this <code>TeeSplit</code>, then
+it is disconnected and the reference returned.</P>
+<P>
+If the fitting passed in is not connected as an 
+output of this <code>TeeSplit</code>, then <code>null</code>
+is returned.</P></p><dl>
+<dt>Parameters:</dt>
+<dd>target - the IPipeFitting to connect for output.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\teesplit.php.html#line126" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\TeeSplit.php at line 126</a>
+
+<h3 id="write()">write</h3>
+<code class="signature">public  bool <strong>write</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> message)</code>
+<div class="details">
+<p>Write the message to all connected outputs.
+<P>
+Returns false if any output returns false, 
+but all outputs are written to regardless.</P></p><dl>
+<dt>Parameters:</dt>
+<dd>message - the message to write</dd>
+<dt>Returns:</dt>
+<dd>Boolean whether any connected outputs failed</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../org\puremvc\php53n\multicore\utilities\pipes\plumbing\teesplit.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

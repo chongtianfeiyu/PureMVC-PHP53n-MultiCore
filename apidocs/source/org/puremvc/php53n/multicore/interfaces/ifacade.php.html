@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:41:55 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../overview-summary.html">
+
+<title>org\puremvc\php53n\multicore\interfaces\IFacade.php (PureMVC PHP)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../source\org\puremvc\php53n\multicore\interfaces\ifacade.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>org\puremvc\php53n\multicore\interfaces\IFacade.php</h1>
+<div class="comment" id="overview_description"><p>PureMVC Multicore Port to PHP
+
+Partly based on PureMVC Port to PHP by:
+- Omar Gonzalez <omar@almerblank.com>
+- and Hasan Otuome <hasan@almerblank.com>
+
+Created on August 26, 2010</p></div>
+
+<hr>
+
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line3"></a> * PureMVC Multicore Port to PHP
+<a name="line4"></a> *
+<a name="line5"></a> * Partly based on PureMVC Port to PHP by:
+<a name="line6"></a> * - Omar Gonzalez &lt;omar@almerblank.com&gt;
+<a name="line7"></a> * - and Hasan Otuome &lt;hasan@almerblank.com&gt;
+<a name="line8"></a> *
+<a name="line9"></a> * Created on August 26, 2010
+<a name="line10"></a> *
+<a name="line11"></a> * @version 0.0.1
+<a name="line12"></a> * @author Michel Chouinard &lt;michel.chouinard@gmail.com&gt;
+<a name="line13"></a> * @copyright PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
+<a name="line14"></a> * @license http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported License
+<a name="line15"></a> */</span>
+<a name="line16"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line17"></a> *
+<a name="line18"></a> */</span>
+<a name="line19"></a><span style="color: #000000; font-weight: bold;">namespace</span> org\puremvc\php53n\multicore\interfaces<span style="color: #339933;">;</span>
+<a name="line20"></a>&nbsp;
+<a name="line21"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/INotifier.php'</span><span style="color: #339933;">;</span>
+<a name="line22"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/INotification.php'</span><span style="color: #339933;">;</span>
+<a name="line23"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/IProxy.php'</span><span style="color: #339933;">;</span>
+<a name="line24"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/IMediator.php'</span><span style="color: #339933;">;</span>
+<a name="line25"></a>&nbsp;
+<a name="line26"></a>&nbsp;
+<a name="line27"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line28"></a> * The interface definition for a PureMVC Facade.
+<a name="line29"></a> *
+<a name="line30"></a> * The &lt;b&gt;Facade&lt;/b&gt; Pattern suggests providing a single
+<a name="line31"></a> * class to act as a central point of communication
+<a name="line32"></a> * for a subsystem.
+<a name="line33"></a> *
+<a name="line34"></a> * In PureMVC, the &lt;b&gt;Facade&lt;/b&gt; acts as an interface between
+<a name="line35"></a> * the core MVC actors (Model, View, Controller) and
+<a name="line36"></a> * the rest of your application.
+<a name="line37"></a> *
+<a name="line38"></a> * @see org\puremvc\php53n\multicore\interfaces\IModel
+<a name="line39"></a> * @see org\puremvc\php53n\multicore\interfaces\IView
+<a name="line40"></a> * @see org\puremvc\php53n\multicore\interfaces\IController
+<a name="line41"></a> * @see org\puremvc\php53n\multicore\interfaces\ICommand
+<a name="line42"></a> * @see org\puremvc\php53n\multicore\interfaces\INotification
+<a name="line43"></a> *
+<a name="line44"></a> */</span>
+<a name="line45"></a><span style="color: #000000; font-weight: bold;">interface</span> IFacade <span style="color: #000000; font-weight: bold;">extends</span> INotifier
+<a name="line46"></a><span style="color: #009900;">&#123;</span>
+<a name="line47"></a>&nbsp;
+<a name="line48"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line49"></a>     * Register Proxy
+<a name="line50"></a>     *
+<a name="line51"></a>     * Register an &lt;b&gt;IProxy&lt;/b&gt; with the &lt;b&gt;Model&lt;/b&gt;.
+<a name="line52"></a>     *
+<a name="line53"></a>     * @param IProxy $proxy The &lt;b&gt;IProxy&lt;/b&gt; to be registered with the &lt;b&gt;Model&lt;/b&gt;.
+<a name="line54"></a>     * @return void
+<a name="line55"></a>     */</span>
+<a name="line56"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> registerProxy<span style="color: #009900;">&#40;</span> IProxy <span style="color: #000088;">$proxy</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line57"></a>&nbsp;
+<a name="line58"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line59"></a>     * Retreive Proxy
+<a name="line60"></a>     *
+<a name="line61"></a>     * Retrieve a previously registered &lt;b&gt;IProxy&lt;/b&gt; from the &lt;b&gt;Model&lt;/b&gt; by name.
+<a name="line62"></a>     *
+<a name="line63"></a>     * @param string $proxyName Name of the &lt;b&gt;IProxy&lt;/b&gt; instance to be retrieved.
+<a name="line64"></a>     * @return IProxy The &lt;b&gt;IProxy&lt;/b&gt; previously regisetered by &lt;var&gt;proxyName&lt;/var&gt; with the &lt;b&gt;Model&lt;/b&gt;.
+<a name="line65"></a>     */</span>
+<a name="line66"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> retrieveProxy<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$proxyName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line67"></a>&nbsp;
+<a name="line68"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line69"></a>     * Remove Proxy
+<a name="line70"></a>     *
+<a name="line71"></a>     * Remove a previously registered &lt;b&gt;IProxy&lt;/b&gt; instance from the &lt;b&gt;Model&lt;/b&gt; by name.
+<a name="line72"></a>     *
+<a name="line73"></a>     * @param string $proxyName Name of the &lt;b&gt;IProxy&lt;/b&gt; to remove from the &lt;b&gt;Model&lt;/b&gt;.
+<a name="line74"></a>     * @return IProxy The &lt;b&gt;IProxy&lt;/b&gt; that was removed from the &lt;b&gt;Model&lt;/b&gt;.
+<a name="line75"></a>     */</span>
+<a name="line76"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeProxy<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$proxyName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line77"></a>&nbsp;
+<a name="line78"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line79"></a>     * Has Proxy
+<a name="line80"></a>     *
+<a name="line81"></a>     * Check if a Proxy is registered for the given &lt;var&gt;proxyName&lt;/var&gt;.
+<a name="line82"></a>     *
+<a name="line83"></a>     * @param string $proxyName Name of the &lt;b&gt;Proxy&lt;/b&gt; to check for.
+<a name="line84"></a>     * @return bool Boolean: Whether a &lt;b&gt;Proxy&lt;/b&gt; is currently registered with the given &lt;var&gt;proxyName&lt;/var&gt;.
+<a name="line85"></a>     */</span>
+<a name="line86"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> hasProxy<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$proxyName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line87"></a>&nbsp;
+<a name="line88"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line89"></a>     * Register Command
+<a name="line90"></a>     *
+<a name="line91"></a>     * Register an &lt;b&gt;ICommand&lt;/b&gt; with the &lt;b&gt;Controller&lt;/b&gt;.
+<a name="line92"></a>     *
+<a name="line93"></a>     * @param string $noteName Name of the &lt;b&gt;INotification&lt;/b&gt;
+<a name="line94"></a>     * @param object|string $commandClassRef &lt;b&gt;ICommand&lt;/b&gt; object to register. Can be an object OR a class name.
+<a name="line95"></a>     * @return void
+<a name="line96"></a>     */</span>
+<a name="line97"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> registerCommand<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$noteName</span><span style="color: #339933;">,</span> <span style="color: #000088;">$commandClassRef</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line98"></a>&nbsp;
+<a name="line99"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line100"></a>     * Remove Command
+<a name="line101"></a>     *
+<a name="line102"></a>     * Remove a previously registered &lt;b&gt;ICommand&lt;/b&gt; to &lt;b&gt;INotification&lt;/b&gt; mapping.
+<a name="line103"></a>     *
+<a name="line104"></a>     * @param string $notificationName Name of the &lt;b&gt;INotification&lt;/b&gt; to remove the &lt;b&gt;ICommand&lt;/b&gt; mapping for.
+<a name="line105"></a>     */</span>
+<a name="line106"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeCommand<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notificationName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line107"></a>&nbsp;
+<a name="line108"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line109"></a>     * Has Command
+<a name="line110"></a>     *
+<a name="line111"></a>     * Check if a &lt;b&gt;Command&lt;/b&gt; is registered for a given &lt;b&gt;Notification&lt;/b&gt;
+<a name="line112"></a>     *
+<a name="line113"></a>     * @param string $notificationName Name of the &lt;b&gt;INotification&lt;/b&gt; to check for.
+<a name="line114"></a>     * @return bool Whether a &lt;b&gt;Command&lt;/b&gt; is currently registered for the given &lt;var&gt;notificationName&lt;/var&gt;.
+<a name="line115"></a>     */</span>
+<a name="line116"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> hasCommand<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notificationName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line117"></a>&nbsp;
+<a name="line118"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line119"></a>     * Register Mediator
+<a name="line120"></a>     *
+<a name="line121"></a>     * Register an &lt;b&gt;IMediator&lt;/b&gt; instance with the &lt;b&gt;View&lt;/b&gt;.
+<a name="line122"></a>     *
+<a name="line123"></a>     * @param IMediator $mediator Reference to the &lt;b&gt;IMediator&lt;/b&gt; instance.
+<a name="line124"></a>     */</span>
+<a name="line125"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> registerMediator<span style="color: #009900;">&#40;</span> IMediator <span style="color: #000088;">$mediator</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line126"></a>&nbsp;
+<a name="line127"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line128"></a>     * Retreive Mediator
+<a name="line129"></a>     *
+<a name="line130"></a>     * Retrieve a previously registered &lt;b&gt;IMediator&lt;/b&gt; instance from the &lt;b&gt;View&lt;/b&gt;.
+<a name="line131"></a>     *
+<a name="line132"></a>     * @param string $mediatorName Name of the &lt;b&gt;IMediator&lt;/b&gt; instance to retrieve.
+<a name="line133"></a>     * @return IMediator The &lt;b&gt;IMediator&lt;/b&gt; previously registered with the given &lt;var&gt;mediatorName&lt;/var&gt;.
+<a name="line134"></a>     */</span>
+<a name="line135"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> retrieveMediator<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$mediatorName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line136"></a>&nbsp;
+<a name="line137"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line138"></a>     * Remove Mediator
+<a name="line139"></a>     *
+<a name="line140"></a>     * Remove a previously registered &lt;b&gt;IMediator&lt;/b&gt; instance from the &lt;b&gt;View&lt;/b&gt;.
+<a name="line141"></a>     *
+<a name="line142"></a>     * @param string $mediatorName Name of the &lt;b&gt;IMediator&lt;/b&gt; instance to be removed.
+<a name="line143"></a>     * @return IMediator The &lt;b&gt;IMediator&lt;/b&gt; instance previously registered with the given &lt;var&gt;mediatorName&lt;/var&gt;.
+<a name="line144"></a>     */</span>
+<a name="line145"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeMediator<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$mediatorName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line146"></a>&nbsp;
+<a name="line147"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line148"></a>     * Has Mediator
+<a name="line149"></a>     *
+<a name="line150"></a>     * Check if a &lt;b&gt;IMediator&lt;/b&gt; is registered or not.
+<a name="line151"></a>     *
+<a name="line152"></a>     * @param string $mediatorName The name of the &lt;b&gt;IMediator&lt;/b&gt; to check for.
+<a name="line153"></a>     * @return bool Boolean: Whether a &lt;b&gt;IMediator&lt;/b&gt; is registered with the given &lt;var&gt;mediatorName&lt;/var&gt;.
+<a name="line154"></a>     */</span>
+<a name="line155"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> hasMediator<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$mediatorName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line156"></a>&nbsp;
+<a name="line157"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line158"></a>     * Notify &lt;b&gt;Observer&lt;/b&gt;s.
+<a name="line159"></a>     *
+<a name="line160"></a>     * This method is left public mostly for backward
+<a name="line161"></a>     * compatibility, and to allow you to send custom
+<a name="line162"></a>     * notification classes using the facade.
+<a name="line163"></a>     *
+<a name="line164"></a>     * Usually you should just call sendNotification
+<a name="line165"></a>     * and pass the parameters, never having to
+<a name="line166"></a>     * construct the notification yourself.
+<a name="line167"></a>     *
+<a name="line168"></a>     * @param INotification $notification The &lt;b&gt;INotification&lt;/b&gt; to have the &lt;b&gt;View&lt;/b&gt; notify &lt;b&gt;Observers&lt;/b&gt; of.
+<a name="line169"></a>     * @return void
+<a name="line170"></a>     */</span>
+<a name="line171"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> notifyObservers<span style="color: #009900;">&#40;</span> INotification <span style="color: #000088;">$notification</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line172"></a>&nbsp;
+<a name="line173"></a><span style="color: #009900;">&#125;</span>
+<a name="line174"></a>&nbsp;</pre>
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../source\org\puremvc\php53n\multicore\interfaces\ifacade.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

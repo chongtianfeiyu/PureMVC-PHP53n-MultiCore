@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:41:59 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../overview-summary.html">
+
+<title>org\puremvc\php53n\multicore\interfaces\IView.php (PureMVC PHP)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../source\org\puremvc\php53n\multicore\interfaces\iview.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>org\puremvc\php53n\multicore\interfaces\IView.php</h1>
+<div class="comment" id="overview_description"><p>PureMVC Multicore Port to PHP
+
+Partly based on PureMVC Port to PHP by:
+- Omar Gonzalez <omar@almerblank.com>
+- and Hasan Otuome <hasan@almerblank.com>
+
+Created on August 26, 2010</p></div>
+
+<hr>
+
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line3"></a> * PureMVC Multicore Port to PHP
+<a name="line4"></a> *
+<a name="line5"></a> * Partly based on PureMVC Port to PHP by:
+<a name="line6"></a> * - Omar Gonzalez &lt;omar@almerblank.com&gt;
+<a name="line7"></a> * - and Hasan Otuome &lt;hasan@almerblank.com&gt;
+<a name="line8"></a> *
+<a name="line9"></a> * Created on August 26, 2010
+<a name="line10"></a> *
+<a name="line11"></a> * @version 0.0.1
+<a name="line12"></a> * @author Michel Chouinard &lt;michel.chouinard@gmail.com&gt;
+<a name="line13"></a> * @copyright PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
+<a name="line14"></a> * @license http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported License
+<a name="line15"></a> */</span>
+<a name="line16"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line17"></a> *
+<a name="line18"></a> */</span>
+<a name="line19"></a><span style="color: #000000; font-weight: bold;">namespace</span> org\puremvc\php53n\multicore\interfaces<span style="color: #339933;">;</span>
+<a name="line20"></a>&nbsp;
+<a name="line21"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/INotifier.php'</span><span style="color: #339933;">;</span>
+<a name="line22"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/INotification.php'</span><span style="color: #339933;">;</span>
+<a name="line23"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/IMediator.php'</span><span style="color: #339933;">;</span>
+<a name="line24"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/IObserver.php'</span><span style="color: #339933;">;</span>
+<a name="line25"></a>&nbsp;
+<a name="line26"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line27"></a> * The interface definition for a PureMVC View.
+<a name="line28"></a> *
+<a name="line29"></a> * In PureMVC, &lt;b&gt;IView&lt;/b&gt; implementors assume these responsibilities:
+<a name="line30"></a> *
+<a name="line31"></a> * In PureMVC, the &lt;b&gt;View&lt;/b&gt; class assumes these responsibilities:
+<a name="line32"></a> *
+<a name="line33"></a> * - Maintain a cache of &lt;b&gt;IMediator&lt;/b&gt; instances.
+<a name="line34"></a> * - Provide methods for registering, retrieving, and removing &lt;b&gt;IMediators&lt;/b&gt;.
+<a name="line35"></a> * - Managing the observer lists for each &lt;b&gt;INotification&lt;/b&gt; in the application.
+<a name="line36"></a> * - Providing a method for attaching &lt;b&gt;IObservers&lt;/b&gt; to an &lt;b&gt;INotification&lt;/b&gt;'s observer list.
+<a name="line37"></a> * - Providing a method for broadcasting an &lt;b&gt;INotification&lt;/b&gt;.
+<a name="line38"></a> * - Notifying the &lt;b&gt;IObservers&lt;/b&gt; of a given &lt;b&gt;INotification&lt;/b&gt; when it broadcast.
+<a name="line39"></a> *
+<a name="line40"></a> * @see org\puremvc\php53n\multicore\interfaces\IMediator
+<a name="line41"></a> * @see org\puremvc\php53n\multicore\interfaces\IObserver
+<a name="line42"></a> * @see org\puremvc\php53n\multicore\interfaces\INotification
+<a name="line43"></a> *
+<a name="line44"></a> */</span>
+<a name="line45"></a><span style="color: #000000; font-weight: bold;">interface</span> IView
+<a name="line46"></a><span style="color: #009900;">&#123;</span>
+<a name="line47"></a>&nbsp;
+<a name="line48"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line49"></a>     * Register Observer
+<a name="line50"></a>     *
+<a name="line51"></a>     * Register an &lt;b&gt;IObserver&lt;/b&gt; to be notified
+<a name="line52"></a>     * of &lt;b&gt;INotifications&lt;/b&gt; with a given name.
+<a name="line53"></a>     *
+<a name="line54"></a>     * @param string $notificationName The name of the &lt;b&gt;INotifications&lt;/b&gt; to notify this &lt;b&gt;IObserver&lt;/b&gt; of.
+<a name="line55"></a>     * @param IObserver $observer The &lt;b&gt;IObserver&lt;/b&gt; to register.
+<a name="line56"></a>     * @return void
+<a name="line57"></a>     */</span>
+<a name="line58"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> registerObserver<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notificationName</span><span style="color: #339933;">,</span> IObserver <span style="color: #000088;">$observer</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line59"></a>&nbsp;
+<a name="line60"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line61"></a>     * Remove Observer
+<a name="line62"></a>     *
+<a name="line63"></a>     * Remove a group of observers from the observer list for a given Notification name.
+<a name="line64"></a>     *
+<a name="line65"></a>     * @param string $notificationName Which observer list to remove from.
+<a name="line66"></a>     * @param mixed $notifyContext Remove the observers with this object as their notifyContext
+<a name="line67"></a>     * @return void
+<a name="line68"></a>     */</span>
+<a name="line69"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeObserver<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notificationName</span><span style="color: #339933;">,</span> <span style="color: #000088;">$notifyContext</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line70"></a>&nbsp;
+<a name="line71"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line72"></a>     * Notify Observers
+<a name="line73"></a>     *
+<a name="line74"></a>     * Notify the &lt;b&gt;IObservers&lt;/b&gt; for a particular &lt;b&gt;INotification&lt;/b&gt;.
+<a name="line75"></a>     *
+<a name="line76"></a>     * All previously attached &lt;b&gt;IObservers&lt;/b&gt; for this &lt;b&gt;INotification&lt;/b&gt;'s
+<a name="line77"></a>     * list are notified and are passed a reference to the &lt;b&gt;INotification&lt;/b&gt; in
+<a name="line78"></a>     * the order in which they were registered.
+<a name="line79"></a>     *
+<a name="line80"></a>     * @param INotification $note The &lt;b&gt;INotification&lt;/b&gt; to notify &lt;b&gt;IObservers&lt;/b&gt; of.
+<a name="line81"></a>     * @return void
+<a name="line82"></a>     */</span>
+<a name="line83"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> notifyObservers<span style="color: #009900;">&#40;</span> INotification <span style="color: #000088;">$notification</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line84"></a>&nbsp;
+<a name="line85"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line86"></a>     * Register Mediator
+<a name="line87"></a>     *
+<a name="line88"></a>     * Register an &lt;b&gt;IMediator&lt;/b&gt; instance with the &lt;b&gt;View&lt;/b&gt;.
+<a name="line89"></a>     *
+<a name="line90"></a>     * Registers the &lt;b&gt;IMediator&lt;/b&gt; so that it can be retrieved by name,
+<a name="line91"></a>     * and further interrogates the &lt;b&gt;IMediator&lt;/b&gt; for its
+<a name="line92"></a>     * &lt;b&gt;INotification&lt;/b&gt; interests.
+<a name="line93"></a>     *
+<a name="line94"></a>     * If the &lt;b&gt;IMediator&lt;/b&gt; returns any &lt;b&gt;INotification&lt;/b&gt;
+<a name="line95"></a>     * names to be notified about, an &lt;b&gt;Observer&lt;/b&gt; is created encapsulating
+<a name="line96"></a>     * the &lt;b&gt;IMediator&lt;/b&gt; instance's &lt;b&gt;handleNotification&lt;/b&gt; method
+<a name="line97"></a>     * and registering it as an &lt;b&gt;Observer&lt;/b&gt; for all &lt;b&gt;INotifications&lt;/b&gt; the
+<a name="line98"></a>     * &lt;b&gt;IMediator&lt;/b&gt; is interested in.
+<a name="line99"></a>     *
+<a name="line100"></a>     * @param IMediator $mediator Reference to the &lt;b&gt;IMediator&lt;/b&gt; instance.
+<a name="line101"></a>     * @return void
+<a name="line102"></a>     */</span>
+<a name="line103"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> registerMediator<span style="color: #009900;">&#40;</span> IMediator <span style="color: #000088;">$mediator</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line104"></a>&nbsp;
+<a name="line105"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line106"></a>     * Retreive Mediator
+<a name="line107"></a>     *
+<a name="line108"></a>     * Retrieve a previously  registered &lt;b&gt;IMediator&lt;/b&gt; instance from the &lt;b&gt;View&lt;/b&gt;.
+<a name="line109"></a>     *
+<a name="line110"></a>     * @param string $mediatorName Name of the &lt;b&gt;IMediator&lt;/b&gt; instance to retrieve.
+<a name="line111"></a>     * @return IMediator The &lt;b&gt;IMediator&lt;/b&gt; previously registered with the given &lt;var&gt;mediatorName&lt;/var&gt;.
+<a name="line112"></a>     */</span>
+<a name="line113"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> retrieveMediator<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$mediatorName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line114"></a>&nbsp;
+<a name="line115"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line116"></a>     * Remove Mediator
+<a name="line117"></a>     *
+<a name="line118"></a>     * Remove a previously registered &lt;b&gt;IMediator&lt;/b&gt; instance from the &lt;b&gt;View&lt;/b&gt;.
+<a name="line119"></a>     *
+<a name="line120"></a>     * @param string $mediatorName Name of the &lt;b&gt;IMediator&lt;/b&gt; instance to be removed.
+<a name="line121"></a>     * @return IMediator The &lt;b&gt;IMediator&lt;/b&gt; instance previously registered with the given &lt;var&gt;mediatorName&lt;/var&gt;.
+<a name="line122"></a>     */</span>
+<a name="line123"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeMediator<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$mediatorName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line124"></a>&nbsp;
+<a name="line125"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line126"></a>     * Has Mediator
+<a name="line127"></a>     *
+<a name="line128"></a>     * Check if a &lt;b&gt;IMediator&lt;/b&gt; is registered or not.
+<a name="line129"></a>     *
+<a name="line130"></a>     * @param string $mediatorName The name of the &lt;b&gt;IMediator&lt;/b&gt; to check for.
+<a name="line131"></a>     * @return bool Boolean: Whether a &lt;b&gt;IMediator&lt;/b&gt; is registered with the given &lt;var&gt;mediatorName&lt;/var&gt;.
+<a name="line132"></a>     */</span>
+<a name="line133"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> hasMediator<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$mediatorName</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line134"></a>&nbsp;
+<a name="line135"></a><span style="color: #009900;">&#125;</span>
+<a name="line136"></a>&nbsp;</pre>
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../source\org\puremvc\php53n\multicore\interfaces\iview.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

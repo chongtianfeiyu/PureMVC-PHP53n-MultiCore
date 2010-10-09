@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:41:51 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../../overview-summary.html">
+
+<title>Queue (PureMVC PHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">org\puremvc\php53n\multicore\utilities\pipes\plumbing\Queue</div>
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.php.html#line50" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\Queue.php at line 50</a>
+
+<h1>Class Queue</h1>
+
+<pre class="tree"><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipe.html">Pipe</a><br>    └─<strong>Queue</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>Queue</strong><br>extends <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipe.html">Pipe</a>
+
+</p>
+
+<div class="comment" id="overview_description"><p>Pipe Queue.
+<P>
+The Queue always stores inbound messages until you send it
+a FLUSH control message, at which point it writes its buffer 
+to the output pipe fitting. The Queue can be sent a SORT 
+control message to go into sort-by-priority mode or a FIFO 
+control message to cancel sort mode and return the
+default mode of operation, FIFO.</P>
+
+<P>
+NOTE: There can effectively be only one Queue on a given 
+pipeline, since the first Queue acts on any queue control 
+message. Multiple queues in one pipeline are of dubious 
+use, and so having to name them would make their operation 
+more complex than need be.</P></p></div>
+
+<hr>
+
+<table id="summary_field">
+<tr><th colspan="2">Field Summary</th></tr>
+<tr>
+<td class="type">protected  array</td>
+<td class="description"><p class="name"><a href="#messages">$messages</a></p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type">protected  string</td>
+<td class="description"><p class="name"><a href="#mode">$mode</a></p><p class="description"></p></td>
+</tr>
+</table>
+
+<table class="inherit">
+<tr><th colspan="2">Fields inherited from org\puremvc\php53n\multicore\utilities\pipes\plumbing\Pipe</th></tr>
+<tr><td><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipe.html#getJunction">getJunction</a></td></tr></table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipe.html">Pipe</a></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output)</p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type">protected  bool</td>
+<td class="description"><p class="name"><a href="#flush()">flush</a>()</p><p class="description">Flush the queue.</p></td>
+</tr>
+<tr>
+<td class="type">protected  void</td>
+<td class="description"><p class="name"><a href="#sortMessagesByPriority()">sortMessagesByPriority</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> msgA, <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> msgB)</p><p class="description">Sort the Messages by priority.</p></td>
+</tr>
+<tr>
+<td class="type">protected  int</td>
+<td class="description"><p class="name"><a href="#store()">store</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> message, message the)</p><p class="description">Store a message.</p></td>
+</tr>
+<tr>
+<td class="type"> bool</td>
+<td class="description"><p class="name"><a href="#write()">write</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> message)</p><p class="description">Handle the incoming message.</p></td>
+</tr>
+</table>
+
+<table class="inherit">
+<tr><th colspan="2">Methods inherited from org\puremvc\php53n\multicore\utilities\pipes\plumbing\Pipe</th></tr>
+<tr><td><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipe.html#__construct()">__construct</a>, <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipe.html#connect()">connect</a>, <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipe.html#disconnect()">disconnect</a>, <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipe.html#write()">write</a></td></tr></table>
+
+<h2 id="detail_field">Field Detail</h2>
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.php.html#line61" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\Queue.php at line 61</a>
+
+<h3 id="messages">messages</h3>
+<code class="signature">protected  array <strong>$messages</strong> = array()</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.php.html#line55" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\Queue.php at line 55</a>
+
+<h3 id="mode">mode</h3>
+<code class="signature">protected  string <strong>$mode</strong> = QueueControlMessage::FIFO</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.php.html#line63" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\Queue.php at line 63</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipe.html">Pipe</a> <strong>__construct</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output)</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.php.html#line149" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\Queue.php at line 149</a>
+
+<h3 id="flush()">flush</h3>
+<code class="signature">protected  bool <strong>flush</strong>()</code>
+<div class="details">
+<p>Flush the queue.
+<P>
+NOTE: This empties the queue.</P></p><dl>
+<dt>Returns:</dt>
+<dd>Boolean true if all messages written successfully.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.php.html#line134" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\Queue.php at line 134</a>
+
+<h3 id="sortMessagesByPriority()">sortMessagesByPriority</h3>
+<code class="signature">protected  void <strong>sortMessagesByPriority</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> msgA, <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> msgB)</code>
+<div class="details">
+<p>Sort the Messages by priority.</p></div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.php.html#line120" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\Queue.php at line 120</a>
+
+<h3 id="store()">store</h3>
+<code class="signature">protected  int <strong>store</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> message, message the)</code>
+<div class="details">
+<p>Store a message.</p><dl>
+<dt>Parameters:</dt>
+<dd>the - IPipeMessage to enqueue.</dd>
+<dt>Returns:</dt>
+<dd>the new count of messages in the queue</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.php.html#line88" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\Queue.php at line 88</a>
+
+<h3 id="write()">write</h3>
+<code class="signature">public  bool <strong>write</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> message)</code>
+<div class="details">
+<p>Handle the incoming message.
+<P>
+Normal messages are enqueued.</P>
+<P>
+The FLUSH message type tells the Queue to write all 
+stored messages to the ouptut PipeFitting, then 
+return to normal enqueing operation.</P>
+<P>
+The SORT message type tells the Queue to sort all 
+<I>subsequent</I> incoming messages by priority. If there
+are unflushed messages in the queue, they will not be
+sorted unless a new message is sent before the next FLUSH.
+Sorting-by-priority behavior continues even after a FLUSH, 
+and can be turned off by sending a FIFO message, which is 
+the default behavior for enqueue/dequeue.</P></p></div>
+
+<hr>
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../org\puremvc\php53n\multicore\utilities\pipes\plumbing\queue.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

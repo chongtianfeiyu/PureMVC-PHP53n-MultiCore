@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:41:50 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../overview-summary.html">
+
+<title>MacroCommand (PureMVC PHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../org/puremvc/php53n/multicore/patterns/command/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../org/puremvc/php53n/multicore/patterns/command/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../org\puremvc\php53n\multicore\patterns\command\macrocommand.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">org\puremvc\php53n\multicore\patterns\command\MacroCommand</div>
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\command\macrocommand.php.html#line55" class="location">org\puremvc\php53n\multicore\patterns\command\MacroCommand.php at line 55</a>
+
+<h1>Class MacroCommand</h1>
+
+<pre class="tree"><a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html">Notifier</a><br>    └─<strong>MacroCommand</strong><br /></pre>
+
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../../../../org/puremvc/php53n/multicore/interfaces/icommand.html">org\puremvc\php53n\multicore\interfaces\ICommand</a> </dd>
+</dl>
+
+<hr>
+
+<p class="signature">public  class <strong>MacroCommand</strong><br>extends <a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html">Notifier</a>
+
+</p>
+
+<div class="comment" id="overview_description"><p>A base <b>ICommand</b> implementation that executes other <b>ICommand</b>s.
+
+A <b>MacroCommand</b> maintains an list of
+<b>ICommand</b> Class references called <i>SubCommands</i>.
+
+When <b>execute</b> is called, the <b>MacroCommand</b>
+instantiates and calls <b>execute</b> on each of its <i>SubCommands</i> turn.
+Each <i>SubCommand</i> will be passed a reference to the original
+<b>INotification</b> that was passed to the <b>MacroCommand</b>'s
+<b>execute</b> method.
+
+Unlike <b>SimpleCommand</b>, your subclass
+should not override <b>execute</b>, but instead, should
+override the <b>initializeMacroCommand</b> method,
+calling <b>addSubCommand</b> once for each <i>SubCommand</i>
+to be executed.</p></div>
+
+<dl>
+<dt>See Also:</dt>
+<dd><a href="../../../../../../org/puremvc/php53n/multicore/core/controller.html">org\puremvc\php53n\multicore\core\Controller</a></dd>
+<dd><a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notification.html">org\puremvc\php53n\multicore\patterns\observer\Notification</a></dd>
+<dd><a href="../../../../../../org/puremvc/php53n/multicore/patterns/command/simplecommand.html">/</a></dd>
+</dl>
+<hr>
+
+<table id="summary_field">
+<tr><th colspan="2">Field Summary</th></tr>
+<tr>
+<td class="type">private  mixed</td>
+<td class="description"><p class="name"><a href="#hasMediator">$hasMediator</a></p></td>
+</tr>
+</table>
+
+<table class="inherit">
+<tr><th colspan="2">Fields inherited from org\puremvc\php53n\multicore\patterns\observer\Notifier</th></tr>
+<tr><td><a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#multitonKey">multitonKey</a></td></tr></table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>()</p><p class="description">Constructor.</p></td>
+</tr>
+<tr>
+<td class="type">protected  void</td>
+<td class="description"><p class="name"><a href="#addSubCommand()">addSubCommand</a>(string commandClassRef)</p><p class="description">Add a SubCommand.</p></td>
+</tr>
+<tr>
+<td class="type">final  void</td>
+<td class="description"><p class="name"><a href="#execute()">execute</a>(<a href="../../../../../../org/puremvc/php53n/multicore/interfaces/inotification.html">INotification</a> notification)</p><p class="description">Execute this <b>MacroCommand</b>'s SubCommands.</p></td>
+</tr>
+<tr>
+<td class="type">protected  void</td>
+<td class="description"><p class="name"><a href="#initializeMacroCommand()">initializeMacroCommand</a>()</p><p class="description">Initialize the <b>MacroCommand</b>.</p></td>
+</tr>
+</table>
+
+<table class="inherit">
+<tr><th colspan="2">Methods inherited from org\puremvc\php53n\multicore\patterns\observer\Notifier</th></tr>
+<tr><td><a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#__construct()">__construct</a>, <a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#facade()">facade</a>, <a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#initializeNotifier()">initializeNotifier</a>, <a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#sendNotification()">sendNotification</a></td></tr></table>
+
+<h2 id="detail_field">Field Detail</h2>
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\command\macrocommand.php.html#line58" class="location">org\puremvc\php53n\multicore\patterns\command\MacroCommand.php at line 58</a>
+
+<h3 id="hasMediator">hasMediator</h3>
+<code class="signature">private  mixed <strong>$hasMediator</strong> = null</code>
+<div class="details">
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\command\macrocommand.php.html#line69" class="location">org\puremvc\php53n\multicore\patterns\command\MacroCommand.php at line 69</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>()</code>
+<div class="details">
+<p>Constructor.
+
+Your subclass MUST define a constructor, be
+sure to call <b>parent::__construct();</b> to
+have PHP instanciate the whole parent/child chain.</p></div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\command\macrocommand.php.html#line112" class="location">org\puremvc\php53n\multicore\patterns\command\MacroCommand.php at line 112</a>
+
+<h3 id="addSubCommand()">addSubCommand</h3>
+<code class="signature">protected  void <strong>addSubCommand</strong>(string commandClassRef)</code>
+<div class="details">
+<p>Add a <i>SubCommand</i>.
+
+The <i>SubCommands</i> will be called in First In/First Out (FIFO)
+order.</p><dl>
+<dt>Parameters:</dt>
+<dd>commandClassRef - The <b>Class name</b> of the <b>ICommand</b>.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\command\macrocommand.php.html#line126" class="location">org\puremvc\php53n\multicore\patterns\command\MacroCommand.php at line 126</a>
+
+<h3 id="execute()">execute</h3>
+<code class="signature">public final  void <strong>execute</strong>(<a href="../../../../../../org/puremvc/php53n/multicore/interfaces/inotification.html">INotification</a> notification)</code>
+<div class="details">
+<p>Execute this <b>MacroCommand</b>'s <i>SubCommands</i>.
+
+The <i>SubCommands</i> will be called in First In/First Out (FIFO)
+order.</p><dl>
+<dt>Parameters:</dt>
+<dd>notification - The <b>INotification</b> object to be passsed to each <i>SubCommand</i>.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\command\macrocommand.php.html#line99" class="location">org\puremvc\php53n\multicore\patterns\command\MacroCommand.php at line 99</a>
+
+<h3 id="initializeMacroCommand()">initializeMacroCommand</h3>
+<code class="signature">protected  void <strong>initializeMacroCommand</strong>()</code>
+<div class="details">
+<p>Initialize the <b>MacroCommand</b>.
+
+In your subclass, override this method to
+initialize the <b>MacroCommand</b>'s <i>SubCommand</i>
+list with <b>ICommand</b> class references like
+this:
+
+<code>
+Initialize MyMacroCommand
+protected function initializeMacroCommand( ) : void
+{
+$this->addSubCommand( 'FirstCommand' );
+$this->addSubCommand( 'SecondCommand' );
+$this->addSubCommand( 'ThirdCommand' );
+}
+</code>
+
+Note that <i>SubCommand</i>s may be any <b>ICommand</b> implementor,
+<b>MacroCommand</b>s or <b>SimpleCommands</b> are both acceptable.</p></div>
+
+<hr>
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../org/puremvc/php53n/multicore/patterns/command/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../org/puremvc/php53n/multicore/patterns/command/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../org\puremvc\php53n\multicore\patterns\command\macrocommand.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

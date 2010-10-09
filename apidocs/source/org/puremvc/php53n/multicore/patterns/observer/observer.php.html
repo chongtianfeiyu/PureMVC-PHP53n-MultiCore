@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:42:03 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../../overview-summary.html">
+
+<title>org\puremvc\php53n\multicore\patterns\observer\Observer.php (PureMVC PHP)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../source\org\puremvc\php53n\multicore\patterns\observer\observer.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>org\puremvc\php53n\multicore\patterns\observer\Observer.php</h1>
+<div class="comment" id="overview_description"><p>PureMVC Multicore Port to PHP
+
+Partly based on PureMVC Port to PHP by:
+- Omar Gonzalez <omar@almerblank.com>
+- and Hasan Otuome <hasan@almerblank.com>
+
+Created on August 26, 2010</p></div>
+
+<hr>
+
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line3"></a> * PureMVC Multicore Port to PHP
+<a name="line4"></a> *
+<a name="line5"></a> * Partly based on PureMVC Port to PHP by:
+<a name="line6"></a> * - Omar Gonzalez &lt;omar@almerblank.com&gt;
+<a name="line7"></a> * - and Hasan Otuome &lt;hasan@almerblank.com&gt;
+<a name="line8"></a> *
+<a name="line9"></a> * Created on August 26, 2010
+<a name="line10"></a> *
+<a name="line11"></a> * @version 0.0.1
+<a name="line12"></a> * @author Michel Chouinard &lt;michel.chouinard@gmail.com&gt;
+<a name="line13"></a> * @copyright PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
+<a name="line14"></a> * @license http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported License
+<a name="line15"></a> */</span>
+<a name="line16"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line17"></a> *
+<a name="line18"></a> */</span>
+<a name="line19"></a><span style="color: #000000; font-weight: bold;">namespace</span> org\puremvc\php53n\multicore\patterns\observer<span style="color: #339933;">;</span>
+<a name="line20"></a>&nbsp;
+<a name="line21"></a><span style="color: #000000; font-weight: bold;">use</span> org\puremvc\php53n\multicore\interfaces\IObserver<span style="color: #339933;">;</span>
+<a name="line22"></a><span style="color: #000000; font-weight: bold;">use</span> org\puremvc\php53n\multicore\interfaces\INotification<span style="color: #339933;">;</span>
+<a name="line23"></a>&nbsp;
+<a name="line24"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/IObserver.php'</span><span style="color: #339933;">;</span>
+<a name="line25"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/INotification.php'</span><span style="color: #339933;">;</span>
+<a name="line26"></a>&nbsp;
+<a name="line27"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line28"></a> * A base &lt;code&gt;IObserver&lt;/code&gt; implementation.
+<a name="line29"></a> *
+<a name="line30"></a> * An Observer is an object that encapsulates information
+<a name="line31"></a> * about an interested object with a notification method that
+<a name="line32"></a> * should be called when an &lt;/b&gt;INotification&lt;/b&gt; is broadcast.
+<a name="line33"></a> *
+<a name="line34"></a> * In PureMVC, &lt;b&gt;Observer&lt;/b&gt; class assume these responsibilities:
+<a name="line35"></a> *
+<a name="line36"></a> * - Encapsulate the notification (callback) method of the interested object.
+<a name="line37"></a> * - Encapsulate the notification context (this) of the interested object.
+<a name="line38"></a> * - Provide methods for setting the interested object' notification method and context.
+<a name="line39"></a> * - Provide a method for notifying the interested object.
+<a name="line40"></a> *
+<a name="line41"></a> * @see org\puremvc\php53n\multicore\core\View
+<a name="line42"></a> * @see org\puremvc\php53n\multicore\patterns\observer\Notification
+<a name="line43"></a> * 
+<a name="line44"></a> */</span>
+<a name="line45"></a><span style="color: #000000; font-weight: bold;">class</span> Observer implements IObserver
+<a name="line46"></a><span style="color: #009900;">&#123;</span>
+<a name="line47"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line48"></a>     * The notification (callback) method name
+<a name="line49"></a>     * @var string
+<a name="line50"></a>     */</span>
+<a name="line51"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$notify</span><span style="color: #339933;">;</span>
+<a name="line52"></a>&nbsp;
+<a name="line53"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line54"></a>     *
+<a name="line55"></a>     * @var mixed
+<a name="line56"></a>     */</span>
+<a name="line57"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$context</span><span style="color: #339933;">;</span>
+<a name="line58"></a>&nbsp;
+<a name="line59"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line60"></a>     * Constructor.
+<a name="line61"></a>     *
+<a name="line62"></a>     * The notification method on the interested object should take
+<a name="line63"></a>     * one parameter of type &lt;b&gt;INotification&lt;/b&gt;
+<a name="line64"></a>     *
+<a name="line65"></a>     * @param string $notifyMethod The notification (callback) method name of the interested object.
+<a name="line66"></a>     * @param mixed $notifyContext The notification context ($this) of the interested object.
+<a name="line67"></a>     * @return IObserver
+<a name="line68"></a>     */</span>
+<a name="line69"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notifyMethod</span><span style="color: #339933;">,</span> <span style="color: #000088;">$notifyContext</span> <span style="color: #009900;">&#41;</span>
+<a name="line70"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line71"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setNotifyMethod</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notifyMethod</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line72"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setNotifyContext</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notifyContext</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line73"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line74"></a>&nbsp;
+<a name="line75"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line76"></a>     * Set the notification method.
+<a name="line77"></a>     *
+<a name="line78"></a>     * The notification method should take one parameter of type &lt;b&gt;INotification&lt;/b&gt;.
+<a name="line79"></a>     *
+<a name="line80"></a>     * @param string $notifyMethod The notification (callback) method name of the interested object.
+<a name="line81"></a>     * @return void
+<a name="line82"></a>     */</span>
+<a name="line83"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setNotifyMethod<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notifyMethod</span> <span style="color: #009900;">&#41;</span>
+<a name="line84"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line85"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">notify</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$notifyMethod</span><span style="color: #339933;">;</span>
+<a name="line86"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line87"></a>&nbsp;
+<a name="line88"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line89"></a>     * Set the notification context.
+<a name="line90"></a>     *
+<a name="line91"></a>     * @param mixed $notifyContext The notification context ($this) of the interested object.
+<a name="line92"></a>     * @return void
+<a name="line93"></a>     */</span>
+<a name="line94"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setNotifyContext<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notifyContext</span> <span style="color: #009900;">&#41;</span>
+<a name="line95"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line96"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">context</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$notifyContext</span><span style="color: #339933;">;</span>
+<a name="line97"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line98"></a>&nbsp;
+<a name="line99"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line100"></a>     * Get the notification method.
+<a name="line101"></a>     *
+<a name="line102"></a>     * @return string The notification (callback) method name of the interested object.
+<a name="line103"></a>     */</span>
+<a name="line104"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">function</span> getNotifyMethod<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line105"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line106"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">notify</span><span style="color: #339933;">;</span>
+<a name="line107"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line108"></a>&nbsp;
+<a name="line109"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line110"></a>     * Get the notification context.
+<a name="line111"></a>     *
+<a name="line112"></a>     * @return mixed The notification context ($this) of the interested object.
+<a name="line113"></a>     */</span>
+<a name="line114"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">function</span> getNotifyContext<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line115"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line116"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">context</span><span style="color: #339933;">;</span>
+<a name="line117"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line118"></a>&nbsp;
+<a name="line119"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line120"></a>     * Notify the interested object.
+<a name="line121"></a>     *
+<a name="line122"></a>     * @param INotification $notification the &lt;b&gt;INotification&lt;/b&gt; to pass to the interested object's notification method
+<a name="line123"></a>     * @return void
+<a name="line124"></a>     */</span>
+<a name="line125"></a>    <span style="color: #666666; font-style: italic;">//public function notifyObserver( INotification $notification )</span>
+<a name="line126"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> notifyObserver<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$notification</span> <span style="color: #009900;">&#41;</span>
+<a name="line127"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line128"></a>        <span style="color: #000088;">$interested</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getNotifyContext</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line129"></a>        <span style="color: #000088;">$method</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getNotifyMethod</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line130"></a>&nbsp;
+<a name="line131"></a>        <span style="color: #000088;">$interested</span><span style="color: #339933;">-&gt;</span><span style="color: #000088;">$method</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$notification</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line132"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line133"></a>&nbsp;
+<a name="line134"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line135"></a>     * Compare the given object to the notificaiton context object.
+<a name="line136"></a>     *
+<a name="line137"></a>     * @param object $object the object to compare.
+<a name="line138"></a>     * @return bool Boolean indicating if the notification context and the object are the same.
+<a name="line139"></a>     */</span>
+<a name="line140"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> compareNotifyContext<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$object</span> <span style="color: #009900;">&#41;</span>
+<a name="line141"></a>     <span style="color: #009900;">&#123;</span>
+<a name="line142"></a>        <span style="color: #b1b100;">return</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$object</span> <span style="color: #339933;">===</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">context</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line143"></a>     <span style="color: #009900;">&#125;</span>
+<a name="line144"></a><span style="color: #009900;">&#125;</span>
+<a name="line145"></a>&nbsp;</pre>
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../source\org\puremvc\php53n\multicore\patterns\observer\observer.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

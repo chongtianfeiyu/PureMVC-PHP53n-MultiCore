@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:41:54 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../overview-summary.html">
+
+<title>org\puremvc\php53n\multicore\interfaces\ICommand.php (PureMVC PHP)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../source\org\puremvc\php53n\multicore\interfaces\icommand.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>org\puremvc\php53n\multicore\interfaces\ICommand.php</h1>
+<div class="comment" id="overview_description"><p>PureMVC Multicore Port to PHP
+
+Partly based on PureMVC Port to PHP by:
+- Omar Gonzalez <omar@almerblank.com>
+- and Hasan Otuome <hasan@almerblank.com>
+
+Created on August 26, 2010</p></div>
+
+<hr>
+
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line3"></a> * PureMVC Multicore Port to PHP
+<a name="line4"></a> *
+<a name="line5"></a> * Partly based on PureMVC Port to PHP by:
+<a name="line6"></a> * - Omar Gonzalez &lt;omar@almerblank.com&gt;
+<a name="line7"></a> * - and Hasan Otuome &lt;hasan@almerblank.com&gt;
+<a name="line8"></a> *
+<a name="line9"></a> * Created on August 26, 2010
+<a name="line10"></a> *
+<a name="line11"></a> * @version 0.0.1
+<a name="line12"></a> * @author Michel Chouinard &lt;michel.chouinard@gmail.com&gt;
+<a name="line13"></a> * @copyright PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
+<a name="line14"></a> * @license http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported License
+<a name="line15"></a> */</span>
+<a name="line16"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line17"></a> *
+<a name="line18"></a> */</span>
+<a name="line19"></a><span style="color: #000000; font-weight: bold;">namespace</span> org\puremvc\php53n\multicore\interfaces<span style="color: #339933;">;</span>
+<a name="line20"></a>&nbsp;
+<a name="line21"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/INotifier.php'</span><span style="color: #339933;">;</span>
+<a name="line22"></a><span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'org/puremvc/php53n/multicore/interfaces/INotification.php'</span><span style="color: #339933;">;</span>
+<a name="line23"></a>&nbsp;
+<a name="line24"></a>&nbsp;
+<a name="line25"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line26"></a> * The interface definition for a PureMVC Command.
+<a name="line27"></a> *
+<a name="line28"></a> * @see org\puremvc\php53n\multicore\interfaces\INotifier
+<a name="line29"></a> * @see org\puremvc\php53n\multicore\interfaces\INotification
+<a name="line30"></a> *
+<a name="line31"></a> */</span>
+<a name="line32"></a><span style="color: #000000; font-weight: bold;">interface</span> ICommand <span style="color: #000000; font-weight: bold;">extends</span> INotifier
+<a name="line33"></a><span style="color: #009900;">&#123;</span>
+<a name="line34"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line35"></a>     * Execute Command
+<a name="line36"></a>     *
+<a name="line37"></a>     * Execute the &lt;kbd&gt;ICommand&lt;/kbd&gt;'s logic to handle a given &lt;kbd&gt;INotification&lt;/kbd&gt;.
+<a name="line38"></a>     *
+<a name="line39"></a>     * @param INotification $notification The &lt;b&gt;INotification&lt;/b&gt; to handle.
+<a name="line40"></a>     * @return void
+<a name="line41"></a>     */</span>
+<a name="line42"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> execute<span style="color: #009900;">&#40;</span> INotification <span style="color: #000088;">$notification</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line43"></a>&nbsp;
+<a name="line44"></a><span style="color: #009900;">&#125;</span>
+<a name="line45"></a>&nbsp;</pre>
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../source\org\puremvc\php53n\multicore\interfaces\icommand.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:41:50 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css">
+<link rel="start" href="../../../../../overview-summary.html">
+
+<title>IController (PureMVC PHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../org/puremvc/php53n/multicore/interfaces/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../org/puremvc/php53n/multicore/interfaces/package-tree.html">Tree</a></li>
+<li><a href="../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../org\puremvc\php53n\multicore\interfaces\icontroller.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">org\puremvc\php53n\multicore\interfaces\IController</div>
+<a href="../../../../../source/org\puremvc\php53n\multicore\interfaces\icontroller.php.html#line44" class="location">org\puremvc\php53n\multicore\interfaces\IController.php at line 44</a>
+
+<h1>Interface IController</h1>
+
+<pre class="tree"><strong>IController</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  interface <strong>IController</strong></p>
+
+<div class="comment" id="overview_description"><p>The interface definition for a PureMVC Controller.
+
+In PureMVC, an <b>IController</b> implementor
+follows the 'Command and Controller' strategy, and
+assumes these responsibilities:
+
+- Remembering which <b>ICommand</b>s are intended to handle
+which <b>INotifications</b>.
+- Registering itself as an <b>IObserver</b> with the <b>IView</b>
+for each <b>INotification</b> that it has an <b>ICommand</b>
+mapping for.
+- Creating a new instance of the proper <b>ICommand</b> to handle
+a given <b>INotification</b> when notified by the <b>IView</b>.
+- Calling the <b>ICommand</b>'s <b>execute</b> method, passing
+in the <b>INotification</b>.</p></div>
+
+<dl>
+<dt>See Also:</dt>
+<dd><a href="../../../../../org/puremvc/php53n/multicore/interfaces/inotification.html">org\puremvc\php53n\multicore\interfaces\INotification</a></dd>
+<dd><a href="../../../../../org/puremvc/php53n/multicore/interfaces/icommand.html">/</a></dd>
+</dl>
+<hr>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#executeCommand()">executeCommand</a>(<a href="../../../../../org/puremvc/php53n/multicore/interfaces/inotification.html">INotification</a> notification)</p><p class="description">Execute Command
+
+Execute the <b>ICommand</b> previously registered as the
+handler for <b>INotification</b>s with the given notification name.</p></td>
+</tr>
+<tr>
+<td class="type"> bool</td>
+<td class="description"><p class="name"><a href="#hasCommand()">hasCommand</a>(string notificationName)</p><p class="description">Has Command
+
+Check if a <b>Command</b> is registered for a given <b>INotification</b></p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#registerCommand()">registerCommand</a>(string notificationName, string commandClassRef)</p><p class="description">Register Command
+
+Register a particular <b>ICommand</b> class as the handler
+for a particular <b>INotification</b>.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#removeCommand()">removeCommand</a>(string notificationName)</p><p class="description">Remove Command
+
+Remove a previously registered <b>ICommand</b> to <b>INotification</b> mapping.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../../../../source/org\puremvc\php53n\multicore\interfaces\icontroller.php.html#line67" class="location">org\puremvc\php53n\multicore\interfaces\IController.php at line 67</a>
+
+<h3 id="executeCommand()">executeCommand</h3>
+<code class="signature">public  void <strong>executeCommand</strong>(<a href="../../../../../org/puremvc/php53n/multicore/interfaces/inotification.html">INotification</a> notification)</code>
+<div class="details">
+<p>Execute Command
+
+Execute the <b>ICommand</b> previously registered as the
+handler for <b>INotification</b>s with the given notification name.</p><dl>
+<dt>Parameters:</dt>
+<dd>notification - The <b>INotification</b> to execute the associated <b>ICommand</b> for.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../source/org\puremvc\php53n\multicore\interfaces\icontroller.php.html#line87" class="location">org\puremvc\php53n\multicore\interfaces\IController.php at line 87</a>
+
+<h3 id="hasCommand()">hasCommand</h3>
+<code class="signature">public  bool <strong>hasCommand</strong>(string notificationName)</code>
+<div class="details">
+<p>Has Command
+
+Check if a <b>Command</b> is registered for a given <b>INotification</b></p><dl>
+<dt>Parameters:</dt>
+<dd>notificationName - Name of the <b>INotification</b> to check for.</dd>
+<dt>Returns:</dt>
+<dd>Boolean: Whether a <b>Command</b> is currently registered for the given <var>notificationName</var>.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../source/org\puremvc\php53n\multicore\interfaces\icontroller.php.html#line56" class="location">org\puremvc\php53n\multicore\interfaces\IController.php at line 56</a>
+
+<h3 id="registerCommand()">registerCommand</h3>
+<code class="signature">public  void <strong>registerCommand</strong>(string notificationName, string commandClassRef)</code>
+<div class="details">
+<p>Register Command
+
+Register a particular <b>ICommand</b> class as the handler
+for a particular <b>INotification</b>.</p><dl>
+<dt>Parameters:</dt>
+<dd>notificationName - Name of the <b>INotification</b>.</dd>
+<dd>commandClassRef - FULLY QUALIFIED Class name of the <b>ICommand</b> implementation to register.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../source/org\puremvc\php53n\multicore\interfaces\icontroller.php.html#line77" class="location">org\puremvc\php53n\multicore\interfaces\IController.php at line 77</a>
+
+<h3 id="removeCommand()">removeCommand</h3>
+<code class="signature">public  void <strong>removeCommand</strong>(string notificationName)</code>
+<div class="details">
+<p>Remove Command
+
+Remove a previously registered <b>ICommand</b> to <b>INotification</b> mapping.</p><dl>
+<dt>Parameters:</dt>
+<dd>notificationName - Name of the <b>INotification</b> to remove the <b>ICommand</b> mapping for.</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../org/puremvc/php53n/multicore/interfaces/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../org/puremvc/php53n/multicore/interfaces/package-tree.html">Tree</a></li>
+<li><a href="../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../org\puremvc\php53n\multicore\interfaces\icontroller.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

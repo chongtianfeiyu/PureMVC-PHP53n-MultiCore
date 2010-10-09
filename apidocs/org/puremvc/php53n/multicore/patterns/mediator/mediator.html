@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:41:51 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../overview-summary.html">
+
+<title>Mediator (PureMVC PHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../org/puremvc/php53n/multicore/patterns/mediator/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../org/puremvc/php53n/multicore/patterns/mediator/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../org\puremvc\php53n\multicore\patterns\mediator\mediator.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">org\puremvc\php53n\multicore\patterns\mediator\Mediator</div>
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line66" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 66</a>
+
+<h1>Class Mediator</h1>
+
+<pre class="tree"><a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html">Notifier</a><br>    └─<strong>Mediator</strong><br /></pre>
+
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../../../../org/puremvc/php53n/multicore/interfaces/imediator.html">org\puremvc\php53n\multicore\interfaces\IMediator</a> </dd>
+</dl>
+
+<hr>
+
+<p class="signature">public  class <strong>Mediator</strong><br>extends <a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html">Notifier</a>
+
+</p>
+
+<div class="comment" id="overview_description"><p>A base <b>IMediator</b> implementation.
+
+In PureMVC, <b>IMediator</b> implementors assume these responsibilities:
+
+- Implement a common method which returns a list of all <b>INotification</b>s
+the <b>IMediator</b> has interest in.
+- Implement a notification callback method.
+- Implement methods that are called when the IMediator is registered or removed from the View.
+
+Additionally, <b>IMediator</b>s typically:
+
+- Act as an intermediary between one or more view components such as text boxes or
+list controls, maintaining references and coordinating their behavior.
+- This is often the place where event listeners are added to view
+components, and their handlers implemented.
+- Respond to and generate <b>INotifications</b>, interacting with of
+the rest of the PureMVC app.
+
+When an <b>IMediator</b> is registered with the <b>IView</b>,
+the <b>IView</b> will call the <b>IMediator</b>'s
+<b>listNotificationInterests</b> method. The <b>IMediator</b> will
+return an <b>Array</b> of <b>INotification</b> names which
+it wishes to be notified about.
+
+The <b>IView</b> will then create an <b>Observer</b> object encapsulating
+that <b>IMediator</b>'s (<b>handleNotification</b>) method and
+register it as an Observer for each <b>INotification</b> name
+returned by <b>listNotificationInterests</b>.</p></div>
+
+<dl>
+<dt>See Also:</dt>
+<dd><a href="../../../../../../org/puremvc/php53n/multicore/core/view.html">/</a></dd>
+</dl>
+<hr>
+
+<table id="summary_field">
+<tr><th colspan="2">Constant Summary</th></tr>
+<tr>
+<td class="type">final static  str</td>
+<td class="description"><p class="name"><a href="#NAME">NAME</a></p><p class="description">The default name of the <b>Mediator</b>.</p></td>
+</tr>
+</table>
+
+<table id="summary_field">
+<tr><th colspan="2">Field Summary</th></tr>
+<tr>
+<td class="type">protected  string</td>
+<td class="description"><p class="name"><a href="#mediatorName">$mediatorName</a></p><p class="description">the mediator name</p></td>
+</tr>
+<tr>
+<td class="type">protected  mixed</td>
+<td class="description"><p class="name"><a href="#viewComponent">$viewComponent</a></p><p class="description">The view component</p></td>
+</tr>
+</table>
+
+<table class="inherit">
+<tr><th colspan="2">Fields inherited from org\puremvc\php53n\multicore\patterns\observer\Notifier</th></tr>
+<tr><td><a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#multitonKey">multitonKey</a></td></tr></table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(str mediatorName, mixed viewComponent)</p><p class="description">Constructor.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getMediatorName()">getMediatorName</a>()</p><p class="description">Get Mediator Name
+
+Get the <b>IMediator</b> instance name</p></td>
+</tr>
+<tr>
+<td class="type"> mixed</td>
+<td class="description"><p class="name"><a href="#getViewComponent()">getViewComponent</a>()</p><p class="description">Get View Component
+
+Get the <b>IMediator</b>'s view component.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#handleNotification()">handleNotification</a>(<a href="../../../../../../org/puremvc/php53n/multicore/interfaces/inotification.html">INotification</a> notification)</p><p class="description">Handle Notification
+
+Handle an <b>INotification</b>.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#listNotificationInterests()">listNotificationInterests</a>()</p><p class="description">List Notifications Interests.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#onRegister()">onRegister</a>()</p><p class="description">onRegister event
+
+Called by the <b>View</b> when the <b>Mediator</b> is registered.</p></td>
+</tr>
+<tr>
+<td class="type"> void;</td>
+<td class="description"><p class="name"><a href="#onRemove()">onRemove</a>()</p><p class="description">onRemove event
+
+Called by the <b>View</b> when the <b>Mediator</b> is removed.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setViewComponent()">setViewComponent</a>(mixed viewComponent)</p><p class="description">Set View Component
+
+Set the <b>IMediator</b>'s view component.</p></td>
+</tr>
+</table>
+
+<table class="inherit">
+<tr><th colspan="2">Methods inherited from org\puremvc\php53n\multicore\patterns\observer\Notifier</th></tr>
+<tr><td><a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#__construct()">__construct</a>, <a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#facade()">facade</a>, <a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#initializeNotifier()">initializeNotifier</a>, <a href="../../../../../../org/puremvc/php53n/multicore/patterns/observer/notifier.html#sendNotification()">sendNotification</a></td></tr></table>
+
+<h2 id="detail_field">Constant Detail</h2>
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line76" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 76</a>
+
+<h3 id="NAME">NAME</h3>
+<code class="signature">public final static  str <strong>NAME</strong> = 'Mediator'</code>
+<div class="details">
+<p>The default name of the <b>Mediator</b>.
+
+Typically, a <b>Mediator</b> will be written to serve
+one specific control or group controls and so,
+will not have a need to be dynamically named.</p></div>
+
+<hr>
+
+<h2 id="detail_field">Field Detail</h2>
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line82" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 82</a>
+
+<h3 id="mediatorName">mediatorName</h3>
+<code class="signature">protected  string <strong>$mediatorName</strong></code>
+<div class="details">
+<p>the mediator name</p></div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line88" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 88</a>
+
+<h3 id="viewComponent">viewComponent</h3>
+<code class="signature">protected  mixed <strong>$viewComponent</strong></code>
+<div class="details">
+<p>The view component</p></div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line93" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 93</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(str mediatorName, mixed viewComponent)</code>
+<div class="details">
+<p>Constructor.</p></div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line106" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 106</a>
+
+<h3 id="getMediatorName()">getMediatorName</h3>
+<code class="signature">public  string <strong>getMediatorName</strong>()</code>
+<div class="details">
+<p>Get Mediator Name
+
+Get the <b>IMediator</b> instance name</p><dl>
+<dt>Returns:</dt>
+<dd>The <b>IMediator</b> instance name.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line118" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 118</a>
+
+<h3 id="getViewComponent()">getViewComponent</h3>
+<code class="signature">public  mixed <strong>getViewComponent</strong>()</code>
+<div class="details">
+<p>Get View Component
+
+Get the <b>IMediator</b>'s view component.</p><dl>
+<dt>Returns:</dt>
+<dd>The view component</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line156" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 156</a>
+
+<h3 id="handleNotification()">handleNotification</h3>
+<code class="signature">public  void <strong>handleNotification</strong>(<a href="../../../../../../org/puremvc/php53n/multicore/interfaces/inotification.html">INotification</a> notification)</code>
+<div class="details">
+<p>Handle Notification
+
+Handle an <b>INotification</b>.</p><dl>
+<dt>Parameters:</dt>
+<dd>notification - The <b>INotification</b> to be handled.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line143" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 143</a>
+
+<h3 id="listNotificationInterests()">listNotificationInterests</h3>
+<code class="signature">public  array <strong>listNotificationInterests</strong>()</code>
+<div class="details">
+<p>List Notifications Interests.
+
+List <b>INotification</b> interests.</p><dl>
+<dt>Returns:</dt>
+<dd>An <b>Array</b> of the <b>INotification</b> names this <b>IMediator</b> has an interest in.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line167" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 167</a>
+
+<h3 id="onRegister()">onRegister</h3>
+<code class="signature">public  void <strong>onRegister</strong>()</code>
+<div class="details">
+<p>onRegister event
+
+Called by the <b>View</b> when the <b>Mediator</b> is registered.</p></div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line178" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 178</a>
+
+<h3 id="onRemove()">onRemove</h3>
+<code class="signature">public  void; <strong>onRemove</strong>()</code>
+<div class="details">
+<p>onRemove event
+
+Called by the <b>View</b> when the <b>Mediator</b> is removed.</p></div>
+
+<hr>
+
+<a href="../../../../../../source/org\puremvc\php53n\multicore\patterns\mediator\mediator.php.html#line131" class="location">org\puremvc\php53n\multicore\patterns\mediator\Mediator.php at line 131</a>
+
+<h3 id="setViewComponent()">setViewComponent</h3>
+<code class="signature">public  void <strong>setViewComponent</strong>(mixed viewComponent)</code>
+<div class="details">
+<p>Set View Component
+
+Set the <b>IMediator</b>'s view component.</p><dl>
+<dt>Parameters:</dt>
+<dd>viewComponent - The view component.</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../org/puremvc/php53n/multicore/patterns/mediator/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../org/puremvc/php53n/multicore/patterns/mediator/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../org\puremvc\php53n\multicore\patterns\mediator\mediator.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

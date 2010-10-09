@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Sat, 09 Oct 2010 20:41:51 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../../../../../stylesheet.css">
+<link rel="start" href="../../../../../../../overview-summary.html">
+
+<title>PipeListener (PureMVC PHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../org\puremvc\php53n\multicore\utilities\pipes\plumbing\pipelistener.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">org\puremvc\php53n\multicore\utilities\pipes\plumbing\PipeListener</div>
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\pipelistener.php.html#line36" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\PipeListener.php at line 36</a>
+
+<h1>Class PipeListener</h1>
+
+<pre class="tree"><strong>PipeListener</strong><br /></pre>
+
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">org\puremvc\php53n\multicore\utilities\pipes\interfaces\IPipeFitting</a> </dd>
+</dl>
+
+<hr>
+
+<p class="signature">public  class <strong>PipeListener</strong></p>
+
+<div class="comment" id="overview_description"><p>Pipe Listener.
+<P>
+Allows a class that does not implement <code>IPipeFitting</code> to
+be the final recipient of the messages in a pipeline.</P></p></div>
+
+<dl>
+<dt>See Also:</dt>
+<dd><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/junction.html">/</a></dd>
+</dl>
+<hr>
+
+<table id="summary_field">
+<tr><th colspan="2">Field Summary</th></tr>
+<tr>
+<td class="type">private  string</td>
+<td class="description"><p class="name"><a href="#listener">$listener</a></p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type">private  object</td>
+<td class="description"><p class="name"><a href="#write">$write</a></p><p class="description"></p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipelistener.html">PipeListener</a></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(object context, string listener)</p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type"> bool</td>
+<td class="description"><p class="name"><a href="#connect()">connect</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output)</p><p class="description">Can't connect anything beyond this.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a></td>
+<td class="description"><p class="name"><a href="#disconnect()">disconnect</a>()</p><p class="description">Can't disconnect since you can't connect, either.</p></td>
+</tr>
+<tr>
+<td class="type"> bool</td>
+<td class="description"><p class="name"><a href="#write()">write</a>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> message)</p><p class="description">Write the message to the output Pipe Fitting.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_field">Field Detail</h2>
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\pipelistener.php.html#line46" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\PipeListener.php at line 46</a>
+
+<h3 id="listener">listener</h3>
+<code class="signature">private  string <strong>$listener</strong></code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\pipelistener.php.html#line41" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\PipeListener.php at line 41</a>
+
+<h3 id="write">write</h3>
+<code class="signature">private  object <strong>$write</strong> = null</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\pipelistener.php.html#line54" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\PipeListener.php at line 54</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/pipelistener.html">PipeListener</a> <strong>__construct</strong>(object context, string listener)</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\pipelistener.php.html#line66" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\PipeListener.php at line 66</a>
+
+<h3 id="connect()">connect</h3>
+<code class="signature">public  bool <strong>connect</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> output)</code>
+<div class="details">
+<p>Can't connect anything beyond this.</p><dl>
+<dt>Returns:</dt>
+<dd>Boolean true if no other fitting was already connected.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\pipelistener.php.html#line76" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\PipeListener.php at line 76</a>
+
+<h3 id="disconnect()">disconnect</h3>
+<code class="signature">public  <a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipefitting.html">IPipeFitting</a> <strong>disconnect</strong>()</code>
+<div class="details">
+<p>Can't disconnect since you can't connect, either.</p><dl>
+<dt>Returns:</dt>
+<dd>NULL</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../../../../../source/org\puremvc\php53n\multicore\utilities\pipes\plumbing\pipelistener.php.html#line98" class="location">org\puremvc\php53n\multicore\utilities\pipes\plumbing\PipeListener.php at line 98</a>
+
+<h3 id="write()">write</h3>
+<code class="signature">public  bool <strong>write</strong>(<a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/interfaces/ipipemessage.html">IPipeMessage</a> message)</code>
+<div class="details">
+<p>Write the message to the output Pipe Fitting.
+<P>
+There may be subsequent filters and tees
+(which also implement this interface), that the 
+fitting is writing to, and so a message
+may branch and arrive in different forms at
+different endpoints. </P>
+<P>
+If any fitting in the chain returns false 
+from this method, then the client who originally 
+wrote into the pipe can take action, such as 
+rolling back changes.</P></p></div>
+
+<hr>
+
+<div class="header">
+<h1>PureMVC PHP</h1>
+<ul>
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-summary.html">Package</a></li>
+<li class="active">Class</li>
+<li><a href="../../../../../../../org/puremvc/php53n/multicore/utilities/pipes/plumbing/package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../overview-files.html">Files</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../../../../../index.html" target="_top">Frames</a>
+<a href="../../../../../../../org\puremvc\php53n\multicore\utilities\pipes\plumbing\pipelistener.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>
