@@ -9,4 +9,5 @@ Release Date: 9/10/10
       Author: Michel Chouinard <michel.chouinard@gmail.com>
      License: Creative Commons Attribution 3.0 Unported License
 --------------------------------------------------------------------------
-0.1.0 - Initial MultiCore PHP 5.3 namespaced Port. Based on PureMVC AS3 MultiCore 1.0.5. 
+0.1.0 - Initial MultiCore PHP 5.3 namespaced Port. Based on PureMVC AS3 MultiCore 1.0.5.
+
